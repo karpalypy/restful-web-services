@@ -3,6 +3,7 @@ package com.karpalypy.rest.webservices.restfulwebservices.user;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -37,6 +38,19 @@ public class UserDAOService {
 			if (user.getId() == id) {
 				return user;
 			}
+		}
+		return null;
+	}
+	
+	public User deleteById(Integer id) {
+		Iterator<User> iterator = users.iterator();
+		
+		while(iterator.hasNext()) {
+			User _user = iterator.next();
+			if (_user.getId() == id) {
+				iterator.remove();
+			}
+			return _user;
 		}
 		return null;
 	}
