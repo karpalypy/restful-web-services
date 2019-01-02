@@ -49,8 +49,8 @@ public class UserDAOService {
 			User _user = iterator.next();
 			if (_user.getId() == id) {
 				iterator.remove();
+				return _user;
 			}
-			return _user;
 		}
 		return null;
 	}

@@ -1,9 +1,15 @@
 package com.karpalypy.rest.webservices.restfulwebservices.user;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,17 +35,26 @@ public class UserResource {
 	}
 
 	@GetMapping(path = "/{id}")
-	public User retrieveUser(@PathVariable Integer id) {
+	public Resource<User> retrieveUser(@PathVariable Integer id) {
 		
 		User _user = service.findOne(id);
 		if(_user == null)
 			throw new UserNotFoundException("id = " + id);
 		
-		return _user;
+		//HATEOAS
+		//retrieveAllUsers
+		
+		Resource<User> resource = new Resource<User>(_user);
+		
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		
+		resource.add(linkTo.withRel("all-users"));
+		
+		return resource;
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> createUser(@RequestBody User user) {
+	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		User _user = service.save(user);
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
@@ -50,9 +65,13 @@ public class UserResource {
 		return ResponseEntity.created(location).build();
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable Integer id) {
 		User _user = service.deleteById(id);
+		
+		if(_user == null)
+			throw new UserNotFoundException("id = " + id);
+		
 	}
 	
 }

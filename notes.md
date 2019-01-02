@@ -14,3 +14,15 @@ User -> Posts
 - Retrieve details of a post	-	GET /users/{id}/posts/{post_id}
 
 
+##### Internationalization
+
+##### Configuration
+- LocaleResolver
+	- Default Locale - Locale.US
+- ResourceBundleMessageSource
+
+
+##### Usage
+- Autowire MessageSource
+- @RequestHeader(value = "Accept-Language", required = false) Locale locale
+- messageSource.getMessage("helloWorld.message", null, locale)

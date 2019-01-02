@@ -2,10 +2,15 @@ package com.karpalypy.rest.webservices.restfulwebservices.user;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 
 	private Integer id;
+	@Size(min=2, message="Name should have atleast 2 characteres")
 	private String name;
+	@Past
 	private LocalDate birthDate;
 	
 	protected User() {
