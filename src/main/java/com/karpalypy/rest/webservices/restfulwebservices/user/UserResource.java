@@ -30,21 +30,21 @@ public class UserResource {
 	private UserDAOService service;
 
 	@GetMapping
-	public List<User> retrieveAllUsers() {
+	public List<UserEntity> retrieveAllUsers() {
 		return service.findAll();
 	}
 
 	@GetMapping(path = "/{id}")
-	public Resource<User> retrieveUser(@PathVariable Integer id) {
+	public Resource<UserEntity> retrieveUser(@PathVariable Integer id) {
 		
-		User _user = service.findOne(id);
+		UserEntity _user = service.findOne(id);
 		if(_user == null)
 			throw new UserNotFoundException("id = " + id);
 		
 		//HATEOAS
 		//retrieveAllUsers
 		
-		Resource<User> resource = new Resource<User>(_user);
+		Resource<UserEntity> resource = new Resource<UserEntity>(_user);
 		
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
 		
@@ -54,8 +54,8 @@ public class UserResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-		User _user = service.save(user);
+	public ResponseEntity<Object> createUser(@Valid @RequestBody UserEntity user) {
+		UserEntity _user = service.save(user);
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
@@ -67,7 +67,7 @@ public class UserResource {
 
 	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable Integer id) {
-		User _user = service.deleteById(id);
+		UserEntity _user = service.deleteById(id);
 		
 		if(_user == null)
 			throw new UserNotFoundException("id = " + id);

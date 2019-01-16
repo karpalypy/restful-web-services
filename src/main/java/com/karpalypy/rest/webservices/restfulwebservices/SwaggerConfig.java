@@ -21,19 +21,25 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-	
-	private static final Contact DEFAULT_CONTACT = new Contact("Karly Toloza", "https://github.com/karpalypy", "karlytoloza@gmail.com");
-	
-	private static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Api Documentation", "Api Documentation", "1.0", "urn:tos", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList<VendorExtension>());
 
-	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(Arrays.asList("application/json"));
-	
-	//Bean - Docket
+	private static final Contact DEFAULT_CONTACT = new Contact("Karly Toloza", "https://github.com/karpalypy",
+			"karlytoloza@gmail.com");
+
+	@SuppressWarnings("rawtypes")
+	private static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Api Documentation", "Api Documentation", "1.0",
+			"urn:tos", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0",
+			new ArrayList<VendorExtension>());
+
+	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(
+			Arrays.asList("application/json"));
+
+	// Bean - Docket
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO).produces(DEFAULT_PRODUCES_AND_CONSUMES).consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO).produces(DEFAULT_PRODUCES_AND_CONSUMES)
+				.consumes(DEFAULT_PRODUCES_AND_CONSUMES);
 	}
-	//Swagger 2
-	//All the paths
-	//All the apis
+	// Swagger 2
+	// All the paths
+	// All the apis
 }

@@ -11,21 +11,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDAOService {
 
-	private static List<User> users = new ArrayList<>();
+	private static List<UserEntity> users = new ArrayList<>();
 
 	private static int usersCount = 3;
 
 	static {
-		users.add(new User(1, "Karly", LocalDate.of(1988, Month.MARCH, 25)));
-		users.add(new User(2, "Manuel", LocalDate.of(1989, Month.JULY, 28)));
-		users.add(new User(3, "Chila", LocalDate.of(1955, Month.FEBRUARY, 28)));
+		users.add(new UserEntity(1, "Karly", LocalDate.of(1988, Month.MARCH, 25)));
+		users.add(new UserEntity(2, "Manuel", LocalDate.of(1989, Month.JULY, 28)));
+		users.add(new UserEntity(3, "Chila", LocalDate.of(1955, Month.FEBRUARY, 28)));
 	}
 
-	public List<User> findAll() {
+	public List<UserEntity> findAll() {
 		return users;
 	}
 
-	public User save(User user) {
+	public UserEntity save(UserEntity user) {
 		if (user.getId() == null) {
 			user.setId(++usersCount);
 		}
@@ -33,8 +33,8 @@ public class UserDAOService {
 		return user;
 	}
 
-	public User findOne(Integer id) {
-		for (User user : users) {
+	public UserEntity findOne(Integer id) {
+		for (UserEntity user : users) {
 			if (user.getId() == id) {
 				return user;
 			}
@@ -42,11 +42,11 @@ public class UserDAOService {
 		return null;
 	}
 	
-	public User deleteById(Integer id) {
-		Iterator<User> iterator = users.iterator();
+	public UserEntity deleteById(Integer id) {
+		Iterator<UserEntity> iterator = users.iterator();
 		
 		while(iterator.hasNext()) {
-			User _user = iterator.next();
+			UserEntity _user = iterator.next();
 			if (_user.getId() == id) {
 				iterator.remove();
 				return _user;
