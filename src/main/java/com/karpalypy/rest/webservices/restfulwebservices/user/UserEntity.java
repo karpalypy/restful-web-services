@@ -29,8 +29,8 @@ public class UserEntity {
 	@ApiModelProperty(notes="Birth date should be in the past")
 	private LocalDate birthDate;
 	
-/*	@OneToMany(mappedBy="user")
-	private List<Post> posts;*/
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
 	
 	protected UserEntity() {
 		
@@ -67,12 +67,12 @@ public class UserEntity {
 		this.birthDate = birthDate;
 	}
 
-/*	public List<Post> getPosts() {
+	public List<Post> getPosts() {
 		return posts;
 	}
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
-	}*/
+	}
 
 }

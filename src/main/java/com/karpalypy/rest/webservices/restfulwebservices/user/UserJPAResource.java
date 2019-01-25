@@ -4,14 +4,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import java.net.URI;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +29,6 @@ import com.karpalypy.rest.webservices.restfulwebservices.exception.UserNotFoundE
 @RestController
 @RequestMapping(path = "/jpa")
 public class UserJPAResource {
-
-	@Autowired
-	private UserDAOService service;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -41,7 +38,8 @@ public class UserJPAResource {
 
 	@GetMapping("/users")
 	public List<UserEntity> retrieveAllUsers() {
-		return userRepository.findAll();
+				
+		return userRepository.findAll() ;
 	}
 
 	@GetMapping(path = "/users/{id}")
@@ -80,12 +78,9 @@ public class UserJPAResource {
 	}
 	
 	//------------------------------------------------------------------------------------------------------------
-	//- Retrieve all posts for a User	-	GET /users/{id}/posts
-	// - Create a post for a User		- 	POST /users/{id}/posts
-	// - Retrieve details of a post	-	GET /users/{id}/posts/{post_id}
 
 	
-/*	@GetMapping("/users/{id}/posts")
+	@GetMapping("/users/{id}/posts")
 	public List<Post> retrieveAllPostsByUser(@PathVariable Integer id) {
 		
 		Optional<UserEntity> _user = userRepository.findById(id);
@@ -93,7 +88,7 @@ public class UserJPAResource {
 			throw new UserNotFoundException("id-" + id);
 		}				
 		return _user.get().getPosts();
-	}*/
+	}
 
 	@PostMapping("/users/{id}/posts")
 	public ResponseEntity<Object> createPostForUser(@PathVariable Integer id, @Valid @RequestBody Post post) {

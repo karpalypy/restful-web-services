@@ -16,7 +16,7 @@ public class Post {
 	private Integer id;
 	private String description;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY) //LAZY significa que, a menos que diga lo contrario, no traer los detalles del user
 	@JsonIgnore
 	private UserEntity user;
 
@@ -46,7 +46,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return String.format("Post [id=%s, description=%s, user=%s]", id, description, user);
+		return String.format("Post [id=%s, description=%s]", id, description);
 	}
 	
 	
