@@ -39,7 +39,7 @@ public class UserResource {
 		
 		UserEntity _user = service.findOne(id);
 		if(_user == null)
-			throw new UserNotFoundException("id = " + id);
+			throw new UserNotFoundException("id-" + id);
 		
 		//HATEOAS
 		//retrieveAllUsers

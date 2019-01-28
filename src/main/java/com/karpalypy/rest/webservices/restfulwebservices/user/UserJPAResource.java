@@ -80,7 +80,7 @@ public class UserJPAResource {
 	}
 	
 	@GetMapping("/jpa/users/{id}/posts")
-	public List<Post> retrieveAllUserPost(@PathVariable int id) {
+	public List<PostEntity> retrieveAllUserPost(@PathVariable int id) {
 		Optional<UserEntity> userOptional = userRepository.findById(id);
 		
 		if(!userOptional.isPresent()) {
@@ -92,7 +92,7 @@ public class UserJPAResource {
 
 
 	@PostMapping("/jpa/users/{id}/posts")
-	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody PostEntity post) {
 		
 		Optional<UserEntity> userOptional = userRepository.findById(id);
 		

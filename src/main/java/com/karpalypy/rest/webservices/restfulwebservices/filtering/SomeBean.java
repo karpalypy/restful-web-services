@@ -2,10 +2,8 @@ package com.karpalypy.rest.webservices.restfulwebservices.filtering;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-//@JsonIgnoreProperties(value={"field1", "field2"}) //static filtering
 @JsonFilter("SomeBeanFilter")
 public class SomeBean {
-	
 
 	private String field1;
 	private String field2;
@@ -42,5 +40,4 @@ public class SomeBean {
 		this.field3 = field3;
 	}
 
-	
 }

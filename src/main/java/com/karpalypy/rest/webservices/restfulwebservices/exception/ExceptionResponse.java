@@ -2,12 +2,12 @@ package com.karpalypy.rest.webservices.restfulwebservices.exception;
 
 import java.time.LocalDateTime;
 
-public class ExceptionResponse{
+public class ExceptionResponse {
 
 	private LocalDateTime timestamp;
 	private String message;
 	private String details;
-	
+
 	public ExceptionResponse(LocalDateTime timestamp, String message, String details) {
 		super();
 		this.timestamp = timestamp;
@@ -26,7 +26,5 @@ public class ExceptionResponse{
 	public String getDetails() {
 		return details;
 	}
-	
-	
-	
+
 }

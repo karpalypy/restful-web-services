@@ -9,14 +9,14 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Post {
+public class PostEntity {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
 	private String description;
 	
-	@ManyToOne(fetch=FetchType.LAZY) //LAZY significa que, a menos que diga lo contrario, no traer los detalles del user
+	@ManyToOne(fetch=FetchType.LAZY) 
 	@JsonIgnore
 	private UserEntity user;
 

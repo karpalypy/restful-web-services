@@ -44,7 +44,6 @@ public class UserDAOService {
 	
 	public UserEntity deleteById(Integer id) {
 		Iterator<UserEntity> iterator = users.iterator();
-		
 		while(iterator.hasNext()) {
 			UserEntity _user = iterator.next();
 			if (_user.getId() == id) {

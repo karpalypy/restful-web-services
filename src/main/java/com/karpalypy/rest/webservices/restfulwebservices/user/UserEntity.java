@@ -3,7 +3,6 @@ package com.karpalypy.rest.webservices.restfulwebservices.user;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,27 +13,27 @@ import javax.validation.constraints.Size;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(description="All details about the user.")
+@ApiModel(description = "All details about the user.")
 @Entity
 public class UserEntity {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
-	@Size(min=2, message="Name should have atleast 2 characteres")
-	@ApiModelProperty(notes="Name should have atleast 2 characteres")
+
+	@Size(min = 2, message = "Name should have atleast 2 characteres")
+	@ApiModelProperty(notes = "Name should have atleast 2 characteres")
 	private String name;
-	
+
 	@Past
-	@ApiModelProperty(notes="Birth date should be in the past")
+	@ApiModelProperty(notes = "Birth date should be in the past")
 	private LocalDate birthDate;
-	
-	@OneToMany(mappedBy="user")
-	private List<Post> posts;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<PostEntity> posts;
+
 	protected UserEntity() {
-		
+
 	}
 
 	public UserEntity(Integer id, String name, LocalDate birthDate) {
@@ -68,14 +67,14 @@ public class UserEntity {
 		this.birthDate = birthDate;
 	}
 
-	public List<Post> getPosts() {
+	public List<PostEntity> getPosts() {
 		return posts;
 	}
 
-	public void setPosts(List<Post> posts) {
+	public void setPosts(List<PostEntity> posts) {
 		this.posts = posts;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("User [id=%s, name=%s, birthDate=%s]", id, name, birthDate);

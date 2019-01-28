@@ -1,7 +1,7 @@
 package com.karpalypy.rest.webservices.restfulwebservices.versioning;
 
 public class PersonV1 {
-	
+
 	private String name;
 
 	public PersonV1(String name) {
@@ -20,7 +20,4 @@ public class PersonV1 {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-
 }
