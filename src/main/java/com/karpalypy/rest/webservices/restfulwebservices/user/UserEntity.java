@@ -3,6 +3,7 @@ package com.karpalypy.rest.webservices.restfulwebservices.user;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,8 +22,8 @@ public class UserEntity {
 	@GeneratedValue
 	private Integer id;
 	
-	@ApiModelProperty(notes="Name should have atleast 2 characteres")
 	@Size(min=2, message="Name should have atleast 2 characteres")
+	@ApiModelProperty(notes="Name should have atleast 2 characteres")
 	private String name;
 	
 	@Past
@@ -73,6 +74,11 @@ public class UserEntity {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("User [id=%s, name=%s, birthDate=%s]", id, name, birthDate);
 	}
 
 }
